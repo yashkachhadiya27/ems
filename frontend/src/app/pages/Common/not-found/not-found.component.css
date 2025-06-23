@@ -1,0 +1,16 @@
+.error-container {
+  text-align: center;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+h1 {
+  font-size: 5rem;
+  color: red;
+}
+
+p {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}

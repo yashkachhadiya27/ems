@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row justify-content-around mt-4">
+    @for (notice of notices; track $index) {
+    <div
+      class="col-4 mat-elevation-z3 rounded-3 d-flex flex-column justify-content-around mb-3"
+      style="height: 8rem; width: 25rem"
+      (click)="showNotice($index)"
+    >
+      <div class="row mt-2">
+        <div class="col-4 fw-bold">Title</div>
+        <div class="col-1">:</div>
+        <div class="col" style="font-weight: 500">
+          {{ notice.title }}
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-4 fw-bold">Deadline</div>
+        <div class="col-1">:</div>
+        <div class="col" style="font-weight: 500">
+          {{ notice.deadline }}
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

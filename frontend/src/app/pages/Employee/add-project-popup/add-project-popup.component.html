@@ -1,0 +1,116 @@
+<div mat-dialog-title class="fs-4 dialogTitle text-center">Add Project</div>
+<div mat-dialog-content>
+  <div class="container">
+    <div class="row">
+      <form [formGroup]="projectForm">
+        <div class="modal-body">
+          <mat-form-field class="full-width">
+            @if(isProjectTextInput) {
+            <mat-label>Project Name</mat-label>
+            } @else {
+            <mat-label>Project</mat-label>
+            } @if(!isProjectTextInput) {
+
+            <mat-select formControlName="project">
+              <mat-option *ngFor="let project of projects" [value]="project">{{
+                project
+              }}</mat-option>
+            </mat-select>
+            } @else {
+            <input
+              matInput
+              placeholder="Enter Project Name"
+              formControlName="project"
+            />
+            }
+          </mat-form-field>
+
+          <mat-checkbox
+            formControlName="isProjectNotPresent"
+            (change)="toggleProjectInput()"
+            color="primary"
+            >Project not present in the list</mat-checkbox
+          >
+
+          <mat-form-field class="full-width">
+            <mat-label>Joining Date(MM/DD/YYYY)</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="joiningDate"
+              [matDatepickerFilter]="myFilter"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>End Date(MM/DD/YYYY)</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker1"
+              formControlName="endDate"
+              [matDatepickerFilter]="myFilter"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker1"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Reporting to</mat-label>
+            <mat-select formControlName="reportingTo">
+              @for (employee of employees; track $index) {
+              <mat-option [value]="employee">{{ employee.fullName }}</mat-option
+              >}
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-label>Technology</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Technologies">
+              @for (tech of technologies; track $index) {
+              <mat-chip-row (removed)="removeTechnology(tech)">
+                {{ tech }}
+                <button matChipRemove [attr.aria-label]="'remove ' + tech">
+                  <mat-icon>cancel</mat-icon>
+                </button> </mat-chip-row
+              >}
+
+              <input
+                placeholder="Add Technology"
+                [matChipInputFor]="chipGrid"
+                [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                [matChipInputAddOnBlur]="addOnBlur"
+                (matChipInputTokenEnd)="addTechnology($event)"
+              />
+            </mat-chip-grid>
+            <mat-hint>Press Enter key after adding each Technology</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <div class="modal-footer">
+          <button mat-button (click)="onCancel()">Reset</button>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="onSubmit()"
+            [disabled]="projectForm.invalid"
+          >
+            Create
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close color="warn" class="m-auto mt-3">
+      Close
+    </button>
+  </div>
+</div>

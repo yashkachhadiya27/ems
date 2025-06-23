@@ -1,0 +1,117 @@
+<div mat-dialog-content>
+  <div class="container salary-slip-container mt-5">
+    <div class="card p-4">
+      <h2 class="text-center mb-4">Salary Slip</h2>
+
+      <div class="text-left mb-3">
+        <h5>ARGUSOFT INDIA LIMITED</h5>
+        <p>A 66, GIDC Sector - 25, Gandhinagar - 382016, Gujarat, India</p>
+      </div>
+
+      <div class="row employee-details mb-4">
+        <div class="col-md-6">
+          <p><strong>Name:</strong> {{ empData.fullName }}</p>
+          <p><strong>Designation:</strong> {{ empData.department }}</p>
+          <p>
+            <strong>Salary for Month:</strong>
+            {{ salaryData.month | date : "dd-MM-yyyy" }}
+          </p>
+          @if(salaryData.paid) {
+          <p><strong>Paid On:</strong>{{ salaryData.paidOn }}</p>
+          }
+        </div>
+        <div class="col-md-6">
+          <p><strong>Emp No:</strong> {{ salaryData.register_id }}</p>
+          <p><strong>Bank Account:</strong> XYZ</p>
+          <p><strong>Bank Name:</strong> Axis Bank</p>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>Income (INR)</th>
+              <th>Deductions (INR)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Basic Pay: {{ salaryData.basicPay }}</td>
+              <td>Tax Deducted: {{ salaryData.taxDeducted }}</td>
+            </tr>
+            <tr>
+              <td>Dearness Allowance: {{ salaryData.dearnessAllowance }}</td>
+              <td>Professional Tax: {{ salaryData.professionalTax }}</td>
+            </tr>
+            <tr>
+              <td>House Rent Allowance: {{ salaryData.houseRentAllowance }}</td>
+              <td>Provident Fund: {{ salaryData.providentFund }}</td>
+            </tr>
+            <tr>
+              <td>Conveyance Allowance: 0</td>
+              <td>Advance Adjustment: 0</td>
+            </tr>
+            <tr>
+              <td>Medical Allowance: {{ salaryData.medicalAllowance }}</td>
+              <td>Meal Voucher: 0</td>
+            </tr>
+            <tr>
+              <td>Special Allowance: 0</td>
+              <td>Other Deductions: 0</td>
+            </tr>
+            <tr>
+              <td>Experience Allowance: 0</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                Corporate Attire Allowance:
+                {{ salaryData.corporateAttireAllowance }}
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Regular Bonus: {{ salaryData.regularBonus }}</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Loyalty Bonus: 0</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Variable Component: 0</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Accomplishment Bonus: 0</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>
+                <strong
+                  >Gross Salary:
+                  {{ empData.totalIncome | number : "1.2-2" }}</strong
+                >
+              </td>
+              <td>
+                <strong
+                  >Total Deductions:
+                  {{ empData.totalDeductions | number : "1.2-2" }}</strong
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="text-right mt-3">
+        <h5>
+          <strong
+            >Net Salary (INR): {{ empData.totalSal | number : "1.2-2" }}</strong
+          >
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.changebac {
+  background-color: var(--main-background-color);
+}
+.title {
+  background-color: var(--primary-color);
+  color: white;
+}

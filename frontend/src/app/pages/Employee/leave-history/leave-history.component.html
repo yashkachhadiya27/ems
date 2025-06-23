@@ -1,0 +1,130 @@
+<div class="container-fluid mt-3">
+  <div class="row">
+    <h2 class="fw-bold fs-4 text-muted">Leave History</h2>
+    <hr />
+  </div>
+</div>
+<div class="ms-2 me-2 mt-5">
+  <div class="mt-3">
+    <div class="table-responsive mat-elevation-z8">
+      <table matSort mat-table [dataSource]="dataSource" id="table">
+        <ng-container matColumnDef="leaveType">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Type</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.leaveType }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="reason">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>Reason</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.reason }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="leaveFromDate">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>From</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.leaveFromDate | date : "dd-MM-yyyy" }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="leaveToDate">
+          <th mat-header-cell mat-sort-header *matHeaderCellDef>To</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.leaveToDate | date : "dd-MM-yyyy" }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef>Status</th>
+          <td mat-cell *matCellDef="let element">
+            <div class="d-flex align-items-center justify-content-center">
+              <mat-chip
+                ><span
+                  [style.color]="
+                    element.status == 'Pending'
+                      ? 'blue'
+                      : element.status == 'Approved'
+                      ? 'Green'
+                      : 'red'
+                  "
+                  [style.fontWeight]="'500'"
+                  >{{ element.status }}</span
+                ></mat-chip
+              >
+              @if(element.status==='Pending') {
+
+              <button
+                mat-icon-button
+                color="primary"
+                class="ms-2"
+                (click)="updateLeave(element)"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                color="warn"
+                class="ms-2"
+                (click)="deleteLeave(element.id)"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+              }
+            </div>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayColumns"
+          class="table-row"
+          matRipple
+        ></tr>
+      </table>
+    </div>
+  </div>
+  <br />
+  <mat-card-footer class="mb-3 mt-3">
+    <div
+      class="row justify-content-end me-2 no-gutters"
+      style="white-space: nowrap"
+    >
+      <mat-form-field appearance="outline" style="width: 7rem">
+        <mat-select
+          [(ngModel)]="itemsPerPage"
+          (selectionChange)="onItemsPerPageChange($event)"
+          style="padding: 0px !important; margin: 0px !important"
+        >
+          @for (size of pageSizeOptions; track $index) {
+          <mat-option [value]="size"> {{ size }} </mat-option>}
+        </mat-select>
+      </mat-form-field>
+      @if(this.pageInfo.totalPages>0) {
+      <div class="col-1 pt-3">
+        <span class="text-muted"
+          >Page : {{ this.pageInfo.number + 1 }} of
+          {{ this.pageInfo.totalPages }}</span
+        >
+      </div>
+      }
+      <div class="col-1">
+        <button
+          mat-icon-button
+          color="primary"
+          matTooltip="Previous"
+          (click)="prevPage()"
+          [disabled]="this.pageInfo.number === 0"
+        >
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          matTooltip="Next"
+          (click)="nextPage()"
+          [disabled]="this.pageInfo.number + 1 === this.pageInfo.totalPages"
+        >
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-footer>
+</div>

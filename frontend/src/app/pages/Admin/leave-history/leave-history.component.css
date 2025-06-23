@@ -1,0 +1,28 @@
+table {
+  background-color: #ecf0f3;
+}
+.table-responsive {
+  overflow-x: auto;
+}
+img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.5s;
+  object-fit: cover;
+}
+img:hover {
+  transform: scale(1.2);
+}
+
+table {
+  background-color: #ecf0f3;
+}
+.table-row {
+  background-color: #f4f9ff;
+  transition: all 0.2s ease;
+}
+.table-row:hover {
+  background-color: #eaf0f5;
+  color: black;
+}

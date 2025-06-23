@@ -1,0 +1,17 @@
+table {
+  background-color: #ecf0f3;
+}
+.table-responsive {
+  overflow-x: auto;
+}
+table {
+  background-color: #ecf0f3;
+}
+.table-row {
+  background-color: #f4f9ff;
+  transition: all 0.2s ease;
+}
+.table-row:hover {
+  background-color: #eaf0f5;
+  color: black;
+}

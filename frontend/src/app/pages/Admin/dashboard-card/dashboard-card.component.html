@@ -1,0 +1,31 @@
+<div class="card text-center card-trans mat-elevation-z7">
+  <div class="card-header text-white pt-4 pb-4" [class]="classArr()[0]">
+    <div class="row align-items-center">
+      <div class="col">
+        @switch (title()) { @case ('Departments') {
+        <i class="fa fa-layer-group fa-2x opacity-75"></i>
+        } @case ('Employees') {
+        <i class="fa fa-users fa-2x opacity-75"></i>
+        } @case ('Leave Request') {
+        <i class="fa fa-arrow-right-from-bracket fa-2x opacity-75"></i>
+        } @case ('Projects') {
+        <i class="fa fa-list-check fa-2x opacity-75"></i>
+        } }
+      </div>
+      <div [class]="classArr()[2] ? classArr()[2] : 'col'">
+        <h1 class="fs-4">{{ count() }}</h1>
+        <h6 class="fs-5">{{ title() }}</h6>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer p-0">
+    <h3>
+      <a
+        [routerLink]="link()"
+        class="text-decoration-none fs-5"
+        [class]="classArr()[1]"
+        >View Details <i class="fa fa-arrow-alt-circle-right"></i
+      ></a>
+    </h3>
+  </div>
+</div>

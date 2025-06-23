@@ -1,0 +1,26 @@
+.box-area {
+  background-color: #ecf0f3;
+  box-shadow: 10px 10px 10px #d1d9e6, -10px -10px 10px #f9f9f9;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.experience {
+  padding: 20px 10px;
+  border-radius: 5px;
+  border: #bcbcbc 2px solid;
+  margin-top: 10px;
+}
+button:hover:not(.exclude) {
+  box-shadow: 0 0 5px #61a616, 0 0 15px #0081bc;
+}
+::placeholder {
+  font-size: 16px;
+}
+.rounded-4 {
+  border-radius: 20px;
+}
+.rounded-5 {
+  border-radius: 30px;
+}

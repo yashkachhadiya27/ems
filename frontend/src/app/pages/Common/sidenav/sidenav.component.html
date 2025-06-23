@@ -1,0 +1,34 @@
+<mat-sidenav-container>
+  <mat-sidenav opened mode="side" [style.width]="sideNavWidth()">
+    @if(role()==="ADMIN"||role()==="USER"){
+    <div class="sidenav-header d-flex flex-column align-items-center">
+      <img
+        [src]="userInfo().image"
+        alt="Profile"
+        class="Profile"
+        [height]="profilePicSize()"
+        [width]="profilePicSize()"
+        (click)="viewDetail()"
+        matTooltip="View Profile"
+        matTooltipPosition="right"
+        style="cursor: pointer"
+      />
+      <div
+        class="header-text text-center"
+        [class.hide-header-text]="isCollapsed()"
+      >
+        <h2>{{ userInfo().name | titlecase }}</h2>
+        <p class="fw-medium">{{ userInfo().department | titlecase }}</p>
+      </div>
+    </div>
+    }
+    <mat-nav-list>
+      @for (item of sidenavItem; track $index) {
+      <app-menu-item [item]="item" [isCollapsed]="isCollapsed()" />
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content" [style.margin-left]="sideNavWidth()">
+    <router-outlet></router-outlet
+  ></mat-sidenav-content>
+</mat-sidenav-container>

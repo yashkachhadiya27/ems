@@ -1,0 +1,40 @@
+<div class="changebac">
+  <div mat-dialog-title class="fs-4 text-center">Attendance Report</div>
+  <div mat-dialog-content>
+    <table class="table mat-elevation-z1">
+      <thead class="thead-dark">
+        <tr class="text-start">
+          <th scope="col">Employee Name</th>
+          @if(data.title!=="Absent Records") {
+          <th scope="col">Days</th>
+          <th scope="col">Leave Date/s</th>
+          }
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of data.records; track $index) {
+        <tr class="text-start">
+          <td>
+            <img [src]="data.records[$index].image" alt="User" />&nbsp;&nbsp;{{
+              item.fullName | titlecase
+            }}
+          </td>
+          @if(data.title!=="Absent Records") {
+
+          <td>{{ item.leaveFromDate | dayFromDates : item.leaveToDate }}</td>
+          <td>
+            {{ item.leaveFromDate | date : "dd MMM yyyy" }} -
+            {{ item.leaveToDate | date : "dd MMM yyyy" }}
+          </td>
+          }
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close color="warn" class="mx-auto">
+      Close
+    </button>
+  </div>
+</div>

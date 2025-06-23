@@ -1,0 +1,220 @@
+<div class="changebac">
+  <div mat-dialog-title class="fs-4 text-center">Edit User</div>
+  <div mat-dialog-content>
+    <div class="container">
+      <div class="row">
+        <div class="row align-items-center me-1 mb-1 ms-1">
+          <form
+            [formGroup]="editEmpForm"
+            class="border p-3 rounded-4"
+            enctype="multipart/form-data"
+          >
+            <div class="g-0"></div>
+            <div class="row">
+              <div class="col-md-6 col-12 mb-1">
+                <label class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control is-valid form-md-control-md bg-light fs-6"
+                  placeholder="First Name"
+                  name="fname"
+                  id="fname"
+                  [value]="userData.fname"
+                  formControlName="fname"
+                  [ngClass]="{'is-valid':(fname.touched || fname.dirty)&&!(fname.errors?.['required'] || (fname.errors?.['pattern'])),'is-invalid':((fname.touched||fname.dirty) && (fname.errors?.['required'] || (fname.errors?.['pattern'])))}"
+                />@if ((fname.touched || fname.dirty) &&
+                fname.errors?.['required']) {
+                <div class="invalid-feedback">*Firstname is Required.</div>
+                } @if (fname.errors?.['pattern']&&(fname.touched ||
+                fname.dirty)) {
+                <div class="invalid-feedback mb-1 ps-1">
+                  *Firstname is Invalid.
+                </div>
+                }
+              </div>
+              <div class="col-md-6 col-12 mb-1">
+                <label class="form-label">Middle Name</label>
+                <input
+                  type="text"
+                  class="form-control is-valid form-md-control-md bg-light fs-6"
+                  placeholder="Middle Name"
+                  name="mname"
+                  id="mname"
+                  [value]="userData.mname"
+                  formControlName="mname"
+                  [ngClass]="{'is-valid':(mname.touched || mname.dirty)&&!(mname.errors?.['required'] || (mname.errors?.['pattern'])),'is-invalid':((mname.touched||mname.dirty) && (mname.errors?.['required'] || (mname.errors?.['pattern'])))}"
+                />@if ((mname.touched || mname.dirty) &&
+                mname.errors?.['required']) {
+                <div class="invalid-feedback">*Middlename is Required.</div>
+                } @if (mname.errors?.['pattern']&&(mname.touched ||
+                mname.dirty)) {
+                <div class="invalid-feedback mb-1 ps-1">
+                  *Middlename is Invalid.
+                </div>
+                }
+              </div>
+            </div>
+            <div class="row mt-1">
+              <div class="col-md-6 col-12 mb-1">
+                <label class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control form-control-md bg-light fs-6"
+                  placeholder="Last Name"
+                  name="lname"
+                  id="lname"
+                  formControlName="lname"
+                  [ngClass]="{'is-valid':(lname.touched || lname.dirty)&&!(lname.errors?.['required'] || (lname.errors?.['pattern'])),'is-invalid':((lname.touched||lname.dirty) && (lname.errors?.['required'] || (lname.errors?.['pattern'])))}"
+                />
+                @if ((lname.touched || lname.dirty) &&
+                lname.errors?.['required']) {
+                <div class="invalid-feedback">*Lastname is Required.</div>
+                } @if (lname.errors?.['pattern']&&(lname.touched ||
+                lname.dirty)) {
+                <div class="invalid-feedback mb-1 ps-1">
+                  *Lastname is Invalid.
+                </div>
+                }
+              </div>
+              <div class="col-12 col-md-6 mb-2">
+                <label class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control form-md-control-md bg-light fs-6"
+                  placeholder="Email"
+                  name="email"
+                  id="email"
+                  formControlName="email"
+                  [ngClass]="{'is-valid':(email.touched || email.dirty)&&!(email.errors?.['required'] || (email.errors?.['pattern'])),'is-invalid':((email.touched||email.dirty) && (email.errors?.['required'] || (email.errors?.['pattern'])))}"
+                />
+                @if ((email.touched || email.dirty) &&
+                email.errors?.['required']) {
+                <div class="invalid-feedback ps-1">*id is Required.</div>
+                } @if (email.errors?.['pattern']&&(email.touched ||
+                email.dirty)) {
+                <div class="invalid-feedback mb-1 ps-1">*Email is Invalid.</div>
+                }
+              </div>
+            </div>
+            <div class="row g-0">
+              <div class="col-md-6 col-12 mb-2">
+                <label class="form-label">Phone</label>
+                <input
+                  type="tel"
+                  class="form-control form-md-control-md bg-light fs-6"
+                  placeholder="Phone Number"
+                  name="phone"
+                  id="phone"
+                  formControlName="phone"
+                  [ngClass]="{'is-valid':(phone.touched || phone.dirty)&&!(phone.errors?.['required'] || (phone.errors?.['pattern'])),'is-invalid':((phone.touched||phone.dirty) && (phone.errors?.['required'] || (phone.errors?.['pattern']) || phone.errors?.['minlength'] ||phone.errors?.['maxlength']))}"
+                />
+                @if ((phone.touched || phone.dirty) &&
+                phone.errors?.['required']) {
+                <div class="invalid-feedback ps-1">*Phone No. is Required.</div>
+                }@if(phone.errors?.['pattern']&&(phone.touched || phone.dirty))
+                {
+                <div class="invalid-feedback mb-1 ps-1">
+                  *Phone Number is Invalid.
+                </div>
+                } @if ((phone.touched || phone.dirty) &&
+                phone.errors?.['minlength']) {
+                <div class="invalid-feedback ps-1">*Phone Number is Short.</div>
+                } @if ((phone.touched || phone.dirty) &&
+                phone.errors?.['maxlength']) {
+                <div class="invalid-feedback ps-1">*Phone Number is Long.</div>
+                }
+              </div>
+              <div class="col-md-6 col-12 ps-4">
+                <label for="department" class="form-label">Department</label>
+                <select
+                  name="department"
+                  id="department"
+                  formControlName="department"
+                  class="form-select bg-light"
+                  [ngClass]="{'is-valid':(department.touched)&&!(department.errors?.['required']),'is-invalid':((department.touched) && (department.errors?.['required']))}"
+                >
+                  @for (item of deptArray; track $index) {
+                  <option value="{{ item }}">
+                    {{ item }}
+                  </option>
+                  }
+                </select>
+                @if (department.touched && department.errors?.['required']) {
+                <div class="invalid-feedback ps-1">*Role is Required.</div>
+                }
+              </div>
+            </div>
+            <div class="row mt-1">
+              <div class="col-md-6 col-12">
+                <label for="dateOfJoining" class="form-label">Joined On</label>
+                <input
+                  type="date"
+                  class="form-control form-md-control-md bg-light fs-6"
+                  name="dateOfJoining"
+                  id="dateOfJoining"
+                  formControlName="dateOfJoining"
+                  [ngClass]="{'is-valid':(dateOfJoining.touched)&&!(dateOfJoining.errors?.['required']||dateOfJoining.errors?.['notInPast']),'is-invalid':((dateOfJoining.touched) && (dateOfJoining.errors?.['required']||dateOfJoining.errors?.['notInPast']))}"
+                />
+                @if (dateOfJoining.touched &&
+                dateOfJoining.errors?.['required']) {
+                <div class="invalid-feedback ps-1">
+                  *Date Of Joining is Required.
+                </div>
+                } @if (dateOfJoining.touched &&
+                dateOfJoining.errors?.['notInPast']) {
+                <div class="invalid-feedback ps-1">
+                  *Date Of Joining should be in past.
+                </div>
+                }
+              </div>
+              <div class="col-md-6 col-12">
+                <label for="dateOfBirth" class="form-label">Birth Date</label>
+                <input
+                  type="date"
+                  class="form-control form-md-control-md bg-light fs-6"
+                  name="dateOfBirth"
+                  id="dateOfBirth"
+                  formControlName="dateOfBirth"
+                  placeholder="Date Of Birth"
+                  [ngClass]="{'is-valid':(dateOfBirth.touched)&&!(dateOfBirth.errors?.['required']||dateOfBirth.errors?.['notInPast']),'is-invalid':((dateOfBirth.touched) && (dateOfBirth.errors?.['required']||dateOfBirth.errors?.['notInPast']))}"
+                />
+                @if (dateOfBirth.touched && dateOfBirth.errors?.['required']) {
+                <div class="invalid-feedback ps-1">*Date is Required.</div>
+                } @if (dateOfBirth.touched && dateOfBirth.errors?.['notInPast'])
+                {
+                <div class="invalid-feedback ps-1">
+                  *Date Of Birth should be in past.
+                </div>
+                }
+              </div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col text-center">
+                <button
+                  mat-raised-button
+                  color="primary"
+                  class="m-auto"
+                  [disabled]="editEmpForm.invalid || !editEmpForm.dirty"
+                  (click)="editEmployee()"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      mat-raised-button
+      color="warn"
+      class="m-auto"
+      (click)="closePopup()"
+    >
+      Close
+    </button>
+  </div>
+</div>

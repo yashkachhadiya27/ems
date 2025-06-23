@@ -1,0 +1,112 @@
+<div class="container mt-3 col-10">
+  <div class="row">
+    <h2 class="fw-bold fs-3 text-muted">Apply Leave</h2>
+    <hr />
+  </div>
+  <div class="row d-flex justify-content-center align-items-center mt-md-5">
+    <form
+      [formGroup]="applyLeaveForm"
+      novalidate
+      class="mb-md-3 mat-elevation-z5 rounded-4"
+      (ngSubmit)="applyLeave()"
+      enctype="multipart/form-data"
+    >
+      <div class="row m-3">
+        <div class="col mb-2">
+          <label for="reason" class="form-label fw-500 fs-6">Reason</label>
+          <input
+            type="text"
+            class="form-control form-md-control-md bg-light fs-6"
+            placeholder="Reason"
+            name="reason"
+            id="reason"
+            formControlName="reason"
+            [ngClass]="{'is-valid':(reason.touched || reason.dirty)&&!(reason.errors?.['required']),'is-invalid':((reason.touched||reason.dirty) && (reason.errors?.['required']))}"
+          />
+          @if ((reason.touched || reason.dirty) && reason.errors?.['required'])
+          {
+          <div class="invalid-feedback ps-1">*Reason is Required.</div>
+          }
+        </div>
+        <div class="col mb-2">
+          <label for="leaveType" class="form-label fw-500 fs-6"
+            >Leave Type</label
+          >
+          <select
+            name="leaveType"
+            id="leaveType"
+            formControlName="leaveType"
+            class="form-select bg-light"
+            [ngClass]="{'is-valid':(leaveType.touched || leaveType.dirty)&&!(leaveType.errors?.['required']),'is-invalid':((leaveType.touched||leaveType.dirty) && (leaveType.errors?.['required']))}"
+          >
+            <option value="" disabled hidden>Leave Type</option>
+            @for (item of TypeOfLeave; track $index) {
+            <option value="{{ item }}">
+              {{ item }}
+            </option>
+            }
+          </select>
+          @if ((leaveType.touched || leaveType.dirty) &&
+          leaveType.errors?.['required']) {
+          <div class="invalid-feedback ps-1">*Leave Type is Required.</div>
+          }
+        </div>
+      </div>
+      <div class="row m-3">
+        <div class="col mb-2">
+          <label for="leaveFromDate" class="form-label fw-500 fs-6">From</label>
+          <input
+            type="date"
+            class="form-control form-md-control-md bg-light fs-6"
+            name="leaveFromDate"
+            id="leaveFromDate"
+            formControlName="leaveFromDate"
+            [ngClass]="{'is-valid':(leaveFromDate.touched || leaveFromDate.dirty)&&!(applyLeaveForm.errors?.['fromDateInPast']||leaveFromDate.errors?.['required']),'is-invalid':((leaveFromDate.touched||leaveFromDate.dirty) && (leaveFromDate.errors?.['required']||leaveFromDate.errors?.['fromDateInPast']))}"
+          />
+          @if ((leaveFromDate.touched || leaveFromDate.dirty) &&
+          leaveFromDate.errors?.['required']) {
+          <div class="invalid-feedback ps-1">*Date is Required.</div>
+          } @if ((leaveFromDate.touched || leaveFromDate.dirty) &&
+          (leaveFromDate.errors?.["fromDateInPast"])) {
+          <div class="invalid-feedback ps-1">
+            *From date must be in the future.
+          </div>
+          }
+        </div>
+        <div class="col mb-2">
+          <label for="leaveToDate" class="form-label fw-500 fs-6">To</label>
+          <input
+            type="date"
+            class="form-control form-md-control-md bg-light fs-6"
+            name="leaveToDate"
+            id="leaveToDate"
+            formControlName="leaveToDate"
+            [ngClass]="{'is-valid':(leaveToDate.touched || leaveToDate.dirty)&&!(leaveToDate.errors?.['required']||applyLeaveForm.errors?.['toDateBeforeFromDate']),'is-invalid':((leaveToDate.touched||leaveToDate.dirty) && (leaveToDate.errors?.['required']||applyLeaveForm.errors?.['toDateBeforeFromDate']))}"
+          />
+          @if ((leaveToDate.touched || leaveToDate.dirty) &&
+          leaveToDate.errors?.['required']) {
+          <div class="invalid-feedback ps-1">*Date is Required.</div>
+          } @if ((leaveToDate.touched || leaveToDate.dirty) &&
+          applyLeaveForm.errors?.['toDateBeforeFromDate']) {
+          <div class="invalid-feedback ps-1">
+            *To date must be after the From date.
+          </div>
+          }
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col text-center">
+          <button
+            type="submit"
+            class="my-3"
+            mat-raised-button
+            color="primary"
+            [disabled]="applyLeaveForm.invalid"
+          >
+            Apply Leave
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

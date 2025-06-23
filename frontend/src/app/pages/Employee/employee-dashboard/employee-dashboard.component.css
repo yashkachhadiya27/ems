@@ -1,0 +1,73 @@
+.wfh-container {
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e5e5e5;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.chart-container {
+  width: 150px;
+  height: 150px;
+}
+
+.wfh-text {
+  flex: 2;
+  color: #141d31;
+  text-align: left;
+}
+#leavesWithPayContainer,
+#restrictedLeavesContainer {
+  height: 17rem;
+}
+rect.highcharts-background {
+  padding: 0;
+  margin: 0;
+}
+b,
+i:hover {
+  color: #141d31;
+}
+
+li,
+.expansion {
+  color: white;
+}
+li {
+  font-weight: 500;
+  cursor: pointer;
+}
+.task-item {
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+.task-item:hover {
+  background-color: #e5e5e5;
+}
+.custom-class {
+  --mat-standard-button-toggle-height: 2rem;
+}
+.chip {
+  --mdc-chip-label-text-size: 11px;
+  --mdc-chip-label-text-weight: bold;
+  --mdc-chip-label-text-color: white;
+  --mdc-chip-elevated-container-color: #141d31;
+}
+.mat-expansion-panel-header {
+  padding: 0px 13px;
+}
+.expansion {
+  --mat-expansion-header-collapsed-state-height: 2rem;
+  --mat-expansion-header-expanded-state-height: 2rem;
+}
+.temp {
+  color: green;
+}
+/* img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: 1px solid grey;
+} */
